@@ -12,7 +12,7 @@ public DbSet<User> Users { get; set; }
 protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Email = "admin@gmail.com", PasswordHash = "Passcode1", Role = Roles.Admin }
+                new User { Id = 1, FullName = "admin", Email = "admin@gmail.com", PasswordHash = "Passcode1", Role = Roles.Admin }
                 );
         }
 }
