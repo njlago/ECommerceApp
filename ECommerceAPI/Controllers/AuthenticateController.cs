@@ -9,7 +9,7 @@ public class AuthenticateController : Controller
     private IUserRepository userRepository;
     private ITokenService tokenService;
 
-    public AuthenticateController(IUserRepository userRepositoy, ITokenService tokenService)
+    public AuthenticateController(IUserRepository userRepository, ITokenService tokenService)
     {
         this.userRepository = userRepository;
         this.tokenService = tokenService;
