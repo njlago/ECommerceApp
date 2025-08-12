@@ -2,7 +2,7 @@
 using ECommerceAPI.Models;
 using ECommerceAPI.Data;
 
-public class UserRepository
+public class UserRepository : IUserRepository
 {
 
     private AppDbContext appDbContext;
