@@ -1,3 +1,4 @@
 obj/
 appsettings.json
 Migrations/
+bin/
