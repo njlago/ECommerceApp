@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 public class AuthenticateController : Controller
 {
     private IUserRepository userRepository;
-    private ITokenService tokenServiuce;
+    private ITokenService tokenService;
 
     public AuthenticateController(IUserRepository userRepositoy, ITokenService tokenService)
     {
         this.userRepository = userRepository;
-        this.tokenServiuce = tokenService;
+        this.tokenService = tokenService;
     }
 
     [HttpPost("login")]
