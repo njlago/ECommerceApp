@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using ECommerceAPI.Models;
 using Microsoft.IdentityModel.Tokens;
 
 public class TokenService : ITokenService

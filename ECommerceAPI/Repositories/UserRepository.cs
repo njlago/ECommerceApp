@@ -14,14 +14,14 @@ public class UserRepository
 
     public User Login(Login user)
     {
-        User userFound = this.appDbContext.Users.Where();
+        User userFound = this.appDbContext.Users.Where(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash).FirstOrDefault();
 
         return userFound;
     }
 
     public bool Register(User user) {
 
-        User userFound = this.appDbContext.Users.Where();
+        User userFound = this.appDbContext.Users.Where(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash).FirstOrDefault();
 
         if (userFound != null) {
             return false;
