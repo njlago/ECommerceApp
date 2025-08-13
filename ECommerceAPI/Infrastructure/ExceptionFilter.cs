@@ -27,7 +27,7 @@ public class ExceptionFilter : IExceptionFilter
             return;
         }
 
-        if (context.Exception is BadRequestException badRequestEx)
+        else if (context.Exception is BadRequestException badRequestEx)
         {
             _logger.Warn("Bad request.", badRequestEx);
 
@@ -38,7 +38,7 @@ public class ExceptionFilter : IExceptionFilter
             return;
         }
 
-        if (context.Exception is UnauthorizedException unauthEx)
+        else if (context.Exception is UnauthorizedException unauthEx)
         {
             _logger.Warn("Invalid credentials.", unauthEx);
 
@@ -49,11 +49,14 @@ public class ExceptionFilter : IExceptionFilter
             return;
         }
 
-        _logger.Error("An unhandled exception occurred.", context.Exception);
-
-        context.Result = new JsonResult(new { message = "Oops, something went wrong." })
+        else
         {
-            StatusCode = StatusCodes.Status500InternalServerError
-        };
+            _logger.Error("An unhandled exception occurred.", context.Exception);
+
+            context.Result = new JsonResult(new { message = "Oops, something went wrong." })
+            {
+                StatusCode = StatusCodes.Status500InternalServerError
+            };
+        }
     }
 }
