@@ -25,6 +25,10 @@ public class ProductRepository : IProductRepository
         var exists = appDbContext.Products.Where(p => product.Id == p.Id).FirstOrDefault();
         if (exists == null)
         {
+            if (product.CategoryId > 3 || product.CategoryId < 1)
+            {
+                throw new InvalidCategoryException("Category must be between 1 and 3.");
+            }
             appDbContext.Products.Add(product);
             appDbContext.SaveChanges();
             return true;
@@ -53,6 +57,10 @@ public class ProductRepository : IProductRepository
         exists.Name = product.Name;
         exists.Price = product.Price;
         exists.Stock = product.Price;
+        if (product.CategoryId > 3 || product.CategoryId < 1)
+        {
+            throw new InvalidCategoryException("Category must be between 1 and 3.");
+        }
         exists.CategoryId = product.CategoryId;
         exists.Description = product.Description;
         appDbContext.SaveChanges();
