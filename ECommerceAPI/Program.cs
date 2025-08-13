@@ -34,6 +34,16 @@ builder.Services
                         ValidAudience = builder.Configuration["JWT:Audience"]
                     };
                 });
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy => policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -92,6 +102,8 @@ if (!app.Environment.IsDevelopment())
 
     app.UseHsts();
 }
+
+app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
 

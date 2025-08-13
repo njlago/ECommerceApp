@@ -1,7 +1,7 @@
 using ECommerceAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : Controller
@@ -15,7 +15,8 @@ public class ProductController : Controller
         _logger = logger;
     }
 
-    [Authorize(Roles = "Admin, Customer")]
+    // [Authorize(Roles = "Admin, Customer")]
+    [AllowAnonymous]
     [HttpGet]
     public IEnumerable<Product> GetProducts()
     {
