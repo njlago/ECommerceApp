@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using log4net;
 using log4net.Config;
+using ECommerceAPI.Infrastructure;
+using Microsoft.AspNetCore.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +57,39 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+}
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler(exceptionHandlerApp =>
+    {
+        exceptionHandlerApp.Run(async context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+            context.Response.ContentType = Text.Plain;
+
+            await context.Response.WriteAsync("An exception was thrown.");
+
+            var exceptionHandlerPathFeature =
+                context.Features.Get<IExceptionHandlerPathFeature>();
+
+            if (exceptionHandlerPathFeature?.Error is BadRequestException)
+            {
+                await context.Response.WriteAsync(" Bad Request. ");
+            }
+            if (exceptionHandlerPathFeature?.Error is NotFoundException)
+            {
+                await context.Response.WriteAsync(" Paremeter Not Found ");
+            }
+            if (exceptionHandlerPathFeature?.Error is UnauthorizedException)
+            {
+                await context.Response.WriteAsync(" Unauthorized access. ");
+            }
+        });
+    });
+
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();

@@ -39,6 +39,7 @@ public class AuthenticateController : Controller
     [HttpPost("register")]
     public IActionResult Register([FromBody] User user)
     {
+        
         if (ModelState.IsValid)
         {
             userRepository.Register(user);
