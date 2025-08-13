@@ -1,0 +1,19 @@
+<h2>Categories</h2>
+<ul>
+  <li *ngFor="let category of categories">
+    {{ category.name }}
+    <button (click)="editCategory(category)">Edit</button>
+    <button (click)="deleteCategory(category.id)">Delete</button>
+  </li>
+</ul>
+
+<div *ngIf="editingCategory">
+  <h3>Edit Category</h3>
+  <input [(ngModel)]="editingCategory!.name" placeholder="Name" />
+  <button (click)="updateCategory()">Update</button>
+  <button (click)="editingCategory = null">Cancel</button>
+</div>
+
+<h3>Add Category</h3>
+<input [(ngModel)]="newCategory.name" placeholder="Name" />
+<button (click)="addCategory()">Add</button>
