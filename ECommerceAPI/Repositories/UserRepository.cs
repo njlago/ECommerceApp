@@ -16,10 +16,11 @@ public class UserRepository : IUserRepository
 
 
 
+
     public User Login([FromBody] Login user)
     {
         // Find user by email
-        User userFound = this.appDbContext.Users.FirstOrDefault(u => u.Email == user.Email);
+        User? userFound = this.appDbContext.Users.FirstOrDefault(u => u.Email == user.Email);
         if (userFound == null)
             throw new NotFoundException("User not found.");
 
@@ -32,7 +33,7 @@ public class UserRepository : IUserRepository
 
     public bool Register([FromBody] User user) {
 
-        User userFound = this.appDbContext.Users.Where(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash).FirstOrDefault();
+        User? userFound = this.appDbContext.Users.Where(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash).FirstOrDefault();
 
         if (userFound != null) {
             return false;
