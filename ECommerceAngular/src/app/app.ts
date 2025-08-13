@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Catalog } from "./components/catalog.component";
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('ECommerceAngular');
+  constructor(private router: Router) {}
+  goLogin() {
+    this.router.navigate(['/public/login'])
+  }
+  goRegister() {
+    this.router.navigate(['/public/register'])
+  }
 }

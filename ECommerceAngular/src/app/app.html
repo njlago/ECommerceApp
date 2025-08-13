@@ -5,17 +5,17 @@
     <nav>
   <a routerLink="/admin/products">Manage Products</a>
   <a routerLink="/admin/categories">Manage Categories</a>
+    
 </nav>
-        <nav>
+
     <app-catalog></app-catalog>
 
-  <a routerLink="/public/register">Register</a>
-  <a routerLink="/public/login">Login</a>
-    </nav>
+  <a (click)="goRegister()">Register | </a>
+  <a (click)="goLogin()">Login</a>
+
 
 
     </div>
-
     
 </main>
 

@@ -7,7 +7,7 @@ import { Category } from '../models/category';
 
 @Injectable({ providedIn: 'root' })
 export class AdminService {
-  private apiUrl = 'http://localhost:5000/api/admin';
+  private apiUrl = 'http://localhost:5146/api/admin';
 
   constructor(private http: HttpClient) {}
 
