@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "dependencies": {
+    "@angular/core": "^20.1.6",
+    "@angular/forms": "^20.1.6",
+    "@angular/router": "^20.1.6",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.8.9",
+    "@types/jasmine": "^5.1.8"
+  }
+}
