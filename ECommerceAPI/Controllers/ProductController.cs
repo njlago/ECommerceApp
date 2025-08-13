@@ -63,7 +63,7 @@ public class ProductController : Controller
         return BadRequest("Product could not be updated.");
     }
     [Authorize(Roles = "Admin")]
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public IActionResult Remove(int id)
     {
         
