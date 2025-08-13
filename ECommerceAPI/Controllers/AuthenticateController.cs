@@ -48,7 +48,7 @@ public class AuthenticateController : Controller
         }
         else
         {
-            throw new BadRequestException("Fields are required");
+            throw new BadRequestException("All fields are required");
         }
     }
 
