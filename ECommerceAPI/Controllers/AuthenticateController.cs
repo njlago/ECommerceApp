@@ -1,7 +1,6 @@
 using ECommerceAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ECommerceAPI.Infrastructure;
 
 [Route("api/auth")]
 [AllowAnonymous]
@@ -40,7 +39,7 @@ public class AuthenticateController : Controller
     [HttpPost("register")]
     public IActionResult Register([FromBody] User user)
     {
-
+        
         if (ModelState.IsValid)
         {
             userRepository.Register(user);
@@ -48,7 +47,7 @@ public class AuthenticateController : Controller
         }
         else
         {
-            throw new BadRequestException("All fields are required");
+            return BadRequest("User Info Invalid");
         }
     }
 
