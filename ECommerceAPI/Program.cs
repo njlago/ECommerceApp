@@ -49,6 +49,7 @@ builder.Services.AddControllers(options =>
 });
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
