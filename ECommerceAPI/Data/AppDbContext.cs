@@ -10,10 +10,16 @@ public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
 public DbSet<User> Users { get; set; }
 public DbSet<Product> Products { get; set; }
-protected override void OnModelCreating(ModelBuilder modelBuilder)
+public DbSet<Category> Categories { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
                 new User { Id = 1, FullName = "admin", Email = "admin@gmail.com", PasswordHash = "Passcode1", Role = Roles.Admin }
+                );
+            modelBuilder.Entity<Category>().HasData(
+                new Category { Id = 1, Name = "Food" },
+                new Category { Id = 2, Name = "Apparel" },
+                new Category { Id = 3, Name = "Electronics"}
                 );
         }
 }
