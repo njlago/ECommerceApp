@@ -34,6 +34,18 @@ public class ProductController : Controller
         return Ok(prod);
     }
 
+    [Authorize(Roles = "Admin, Customer")]
+    [HttpGet("{cID}")]
+    public IActionResult GetProductByCategory(int cID)
+    {
+        var prodList = productRepository.GetProductByCategoryId(cID);
+        if (prodList == null)
+        {
+            return BadRequest($"No Items with category {cID}.");
+        }
+        return Ok(prodList);
+    }
+
     [Authorize(Roles = "Admin")]
     [HttpPost]
     public IActionResult Add(Product product)

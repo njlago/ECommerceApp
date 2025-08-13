@@ -20,6 +20,11 @@ public class ProductRepository : IProductRepository
     {
         return appDbContext.Products.Find(id);
     }
+
+    public List<Product> GetProductByCategoryId(int cID)
+    {
+        return appDbContext.Products.Where(p => p.CategoryId == cID).ToList();
+    }
     public bool Add(Product product)
     {
         var exists = appDbContext.Products.Where(p => product.Id == p.Id).FirstOrDefault();
