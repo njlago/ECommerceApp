@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,10 +14,10 @@ export class RegisterComponent {
   registerData = { fullName: '', email: '', password: '' };
   errorMessage = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private userService: UserService) {}
 
   onRegister() {
-    this.authService.register(this.registerData).subscribe({
+    this.userService.register(this.registerData).subscribe({
       next: () => alert('Registration successful!'),
       error: (err: any) => this.errorMessage = err.error?.error || 'Registration failed'
     });
