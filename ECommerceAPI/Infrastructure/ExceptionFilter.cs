@@ -2,6 +2,8 @@ using log4net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
+namespace ECommerceAPI.Infrastructure;
+
 public class ExceptionFilter : IExceptionFilter
 {
     private readonly ILog _logger;

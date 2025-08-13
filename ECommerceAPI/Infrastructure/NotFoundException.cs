@@ -1,6 +1,6 @@
 using System;
 
-namespace ECommerceAPI.Exceptions
+namespace ECommerceAPI.Infrastructure
 {
     public class NotFoundException : Exception
     {
