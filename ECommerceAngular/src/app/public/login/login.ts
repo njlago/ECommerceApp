@@ -14,12 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  loginData = { email: '', password: '' };
+  loginData = { Email: '', PasswordHash: '' };
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
+    console.log(this.loginData);
     this.authService.login(this.loginData).subscribe({
       next: (res: any) => {
         localStorage.setItem('token', res.token);
