@@ -1,6 +1,7 @@
 
 using ECommerceAPI.Models;
 using ECommerceAPI.Data;
+using Microsoft.AspNetCore.Mvc;
 
 public class UserRepository : IUserRepository
 {
@@ -12,14 +13,14 @@ public class UserRepository : IUserRepository
     }
 
 
-    public User Login(Login user)
+    public User Login([FromBody] Login user)
     {
         User userFound = this.appDbContext.Users.Where(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash).FirstOrDefault();
 
         return userFound;
     }
 
-    public bool Register(User user) {
+    public bool Register([FromBody] User user) {
 
         User userFound = this.appDbContext.Users.Where(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash).FirstOrDefault();
 

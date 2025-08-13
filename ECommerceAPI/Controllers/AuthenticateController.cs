@@ -9,14 +9,17 @@ public class AuthenticateController : Controller
 {
     private IUserRepository userRepository;
     private ITokenService tokenService;
+    private readonly ILogger<AuthenticateController> _logger;
 
-    public AuthenticateController(IUserRepository userRepository, ITokenService tokenService)
+    public AuthenticateController(IUserRepository userRepository, ITokenService tokenService, ILogger<AuthenticateController> logger)
     {
         this.userRepository = userRepository;
         this.tokenService = tokenService;
+        _logger = logger;
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
 
     public IActionResult Login([FromBody] Login user)
     {
