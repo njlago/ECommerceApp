@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using log4net;
 using log4net.Config;
+using ECommerceAPI.Infrastructure;
 
 
 var builder = WebApplication.CreateBuilder(args);
