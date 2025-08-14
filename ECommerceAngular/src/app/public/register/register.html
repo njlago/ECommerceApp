@@ -1,7 +1,0 @@
-<form #registerForm="ngForm" (ngSubmit)="onRegister()">
-  <input name="fullName" [(ngModel)]="registerData.fullName" placeholder="Full Name" required />
-  <input name="email" [(ngModel)]="registerData.email" placeholder="Email" required type="email" />
-  <input name="password" [(ngModel)]="registerData.password" placeholder="Password" required type="password" />
-  <button type="submit">Register</button>
-  <div *ngIf="errorMessage">{{ errorMessage }}</div>
-</form>

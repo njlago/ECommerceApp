@@ -1,0 +1,14 @@
+<h2>Login</h2>
+<form (ngSubmit)="onLogin()">
+  <fieldset>
+    <div>
+      <input id="Email" [(ngModel)]="Email" name="Email" placeholder="Email" required>
+    </div>
+    <div>
+      <input id="PasswordHash" [(ngModel)]="PasswordHash" name="PasswordHash" placeholder="Password" type="Password">
+    </div>
+    <div>
+      <button type="submit">Login</button>
+    </div>
+  </fieldset>
+</form>
