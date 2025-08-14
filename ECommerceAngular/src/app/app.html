@@ -8,7 +8,6 @@
     
 </nav>
 
-    <app-catalog></app-catalog>
   <div *ngIf="authService.isAuthenticated(); else loggedOut">
     <span>Welcome, {{ authService.getEmail() }}</span> | 
     <a (click)="logout()">Logout</a> | 

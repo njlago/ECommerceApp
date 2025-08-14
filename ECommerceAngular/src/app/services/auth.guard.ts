@@ -12,7 +12,7 @@ export class AuthGuard {
     const isAuthenticated = !!this.authService.getToken();
 
     if (!isAuthenticated) {
-      return this.router.createUrlTree(['/login']);
+      return this.router.createUrlTree(['/public/login']);
     }
 
     return true;
