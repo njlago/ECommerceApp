@@ -4,7 +4,7 @@
   <li *ngFor="let product of products">
     {{ product.name }} - {{ product.price }} 
     <button (click)="editProduct(product)">Edit</button>
-    <button (click)="deleteProduct(product.id)">Delete</button>
+    
   </li>
 </ul>
 
@@ -18,5 +18,12 @@
 
 <h3>Add Product</h3>
 <input [(ngModel)]="newProduct.name" placeholder="Name" />
+<input [(ngModel)]="newProduct.description" placeholder="description" type="text" />
 <input [(ngModel)]="newProduct.price" placeholder="Price" type="number" />
+<input [(ngModel)]="newProduct.stock" placeholder="Stock" type="number" />
+<input [(ngModel)]="newProduct.categoryId" placeholder="CategoryID" type="number" />
 <button (click)="addProduct()">Add</button>
+
+<h3>Enter ID of item to delete</h3>
+<input [(ngModel)]="delProduct.id" placeholder="ID" type="number" />
+<button (click)="deleteProduct()">Delete</button>

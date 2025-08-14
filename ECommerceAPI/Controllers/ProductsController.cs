@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 // [Authorize]
 [ApiController]
-[Route("api/[controller]")]
-public class ProductController : Controller
+[Route("api")]
+public class ProductsController : Controller
 {
     private IProductRepository productRepository;
-    private readonly ILogger<ProductController> _logger;
+    private readonly ILogger<ProductsController> _logger;
 
-    public ProductController(IProductRepository productRepository, ILogger<ProductController> logger)
+    public ProductsController(IProductRepository productRepository, ILogger<ProductsController> logger)
     {
         this.productRepository = productRepository;
         _logger = logger;
@@ -17,13 +17,14 @@ public class ProductController : Controller
 
     // [Authorize(Roles = "Admin, Customer")]
     [AllowAnonymous]
-    [HttpGet]
+    [HttpGet("products")]
+
     public IEnumerable<Product> GetProducts()
     {
         return productRepository.GetProducts();
     }
     [Authorize(Roles = "Admin, Customer")]
-    [HttpGet("{id}")]
+    // [HttpGet("{id}")]
     public IActionResult GetProduct(int id)
     {
         var prod = productRepository.GetProduct(id);
@@ -35,7 +36,7 @@ public class ProductController : Controller
     }
 
     [Authorize(Roles = "Admin, Customer")]
-    [HttpGet("{cID}")]
+    // [HttpGet("{cID}")]
     public IActionResult GetProductByCategory(int cID)
     {
         var prodList = productRepository.GetProductByCategoryId(cID);
@@ -46,8 +47,8 @@ public class ProductController : Controller
         return Ok(prodList);
     }
 
-    [Authorize(Roles = "Admin")]
-    [HttpPost]
+    // [Authorize(Roles = "Admin")]
+    [HttpPost("admin/products")]
     public IActionResult Add(Product product)
     {
         if (ModelState.IsValid)
@@ -75,8 +76,8 @@ public class ProductController : Controller
         }
         return BadRequest("Product could not be updated.");
     }
-    [Authorize(Roles = "Admin")]
-    [HttpDelete("{id}")]
+    // [Authorize(Roles = "Admin")]
+    [HttpDelete("admin/products/{id}")]
     public IActionResult Remove(int id)
     {
         

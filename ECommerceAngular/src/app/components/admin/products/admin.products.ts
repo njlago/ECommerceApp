@@ -14,7 +14,8 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 export class AdminProductsComponent implements OnInit {
   products: Product[] = [];
-  newProduct: Product = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 0 };
+  newProduct: Product = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 1 };
+  delProduct: Product = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 1 };
   editingProduct: Product | null = null;
 
   constructor(private adminService: AdminService) {}
@@ -31,6 +32,7 @@ export class AdminProductsComponent implements OnInit {
     this.adminService.addProduct(this.newProduct).subscribe(() => {
       this.loadProducts();
       this.newProduct = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 0 };
+
     });
   }
 
@@ -47,7 +49,7 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
-  deleteProduct(id: number) {
-    this.adminService.deleteProduct(id).subscribe(() => this.loadProducts());
+  deleteProduct() {
+    this.adminService.deleteProduct(this.delProduct.id).subscribe(() => this.loadProducts());
   }
 }

@@ -12,42 +12,42 @@ import { CommonModule, NgIf } from '@angular/common';
   imports: [FormsModule, HttpClientModule, Catalog, CommonModule],
   templateUrl: './admin.orders.component.html',
 })
-export class AdminOrdersComponent implements OnInit {
+export class AdminOrdersComponent {
   products: Product[] = [];
   newProduct: Product = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 0 };
   editingProduct: Product | null = null;
 
   constructor(private adminService: AdminService) {}
 
-  ngOnInit() {
-    this.loadProducts();
-  }
+  // ngOnInit() {
+  //   this.loadProducts();
+  // }
 
-  loadProducts() {
-    this.adminService.getProducts().subscribe(data => this.products = data);
-  }
+  // loadProducts() {
+  //   this.adminService.getProducts().subscribe(data => this.products = data);
+  // }
 
-  addProduct() {
-    this.adminService.addProduct(this.newProduct).subscribe(() => {
-      this.loadProducts();
-      this.newProduct = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 0 };
-    });
-  }
+  // addProduct() {
+  //   this.adminService.addProduct(this.newProduct).subscribe(() => {
+  //     this.loadProducts();
+  //     this.newProduct = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 0 };
+  //   });
+  // }
 
-  editProduct(product: Product) {
-    this.editingProduct = { ...product };
-  }
+  // editProduct(product: Product) {
+  //   this.editingProduct = { ...product };
+  // }
 
-  updateProduct() {
-    if (this.editingProduct) {
-      this.adminService.updateProduct(this.editingProduct).subscribe(() => {
-        this.loadProducts();
-        this.editingProduct = null;
-      });
-    }
-  }
+  // updateProduct() {
+  //   if (this.editingProduct) {
+  //     this.adminService.updateProduct(this.editingProduct).subscribe(() => {
+  //       this.loadProducts();
+  //       this.editingProduct = null;
+  //     });
+  //   }
+  // }
 
-  deleteProduct(id: number) {
-    this.adminService.deleteProduct(id).subscribe(() => this.loadProducts());
-  }
+  // deleteProduct(id: number) {
+  //   this.adminService.deleteProduct(id).subscribe(() => this.loadProducts());
+  // }
 }
