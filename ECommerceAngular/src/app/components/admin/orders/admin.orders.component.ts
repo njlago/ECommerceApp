@@ -7,13 +7,12 @@ import { Catalog } from '../../catalog.component';
 import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-orders',
   standalone: true,
   imports: [FormsModule, HttpClientModule, Catalog, CommonModule],
-  templateUrl: './products.html',
-  styleUrls: ['./products.css']
+  templateUrl: './admin.orders.component.html',
 })
-export class AdminProductsComponent implements OnInit {
+export class AdminOrdersComponent implements OnInit {
   products: Product[] = [];
   newProduct: Product = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 0 };
   editingProduct: Product | null = null;

@@ -12,6 +12,7 @@ export class AdminGuard {
     const role = this.authService.getRole();
 
     if (role != "Admin") {
+      console.log('hello')
       return this.router.createUrlTree(['/public/login']);
     }
 

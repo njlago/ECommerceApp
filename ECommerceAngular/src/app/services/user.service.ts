@@ -8,7 +8,9 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: { fullName: string; email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
-  }
+  register(user: { fullName: string; email: string; passwordHash: string }): Observable<string> {
+  const payload = { ...user, role: 'customer' };
+  return this.http.post(`${this.apiUrl}/register`, payload, { responseType: 'text' });
+}
+
 }

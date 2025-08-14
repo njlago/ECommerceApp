@@ -3,17 +3,19 @@
 <main class="main">
   <div class="content">
     <nav>
-  <a routerLink="/admin/products">Manage Products</a>
-  <a routerLink="/admin/categories">Manage Categories</a>
     
 </nav>
 
   <div *ngIf="authService.isAuthenticated(); else loggedOut">
-    <span>Welcome, {{ authService.getEmail() }}</span> | 
     <a (click)="logout()">Logout</a> | 
-    <a routerLink="/public/catalog">Catalog</a> 
+    <a (click)="goOrders()">Orders Dashboard</a> | 
+    <a (click)="goProducts()">Products</a> | 
+
+    <span>Welcome, {{ authService.getEmail() }}</span> | 
+
   </div>
   <ng-template #loggedOut>
+
     <a (click)="goRegister()">Register | </a>
     <a (click)="goLogin()">Login</a>
   </ng-template>

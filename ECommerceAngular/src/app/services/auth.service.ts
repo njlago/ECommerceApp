@@ -22,6 +22,9 @@ export class AuthService {
 
   getRole(): string {
     const decodedToken = this.getDecodedToken();
+    if (decodedToken == null) {
+      return 'customer'
+    }
     return decodedToken.role;
   }
 

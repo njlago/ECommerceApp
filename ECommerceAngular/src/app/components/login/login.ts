@@ -28,11 +28,13 @@ export class LoginComponent {
       next: (res: any) => {
         this.authService.saveToken(res.token);
         var role = this.authService.getRole();
+
         if (role == "Admin") {
-          this.router.navigate(['/${role}/products']);
+
+          this.router.navigate([`/admin/products`]);
         }
         else {
-          this.router.navigate(['/public/products'])
+          this.router.navigate([`/public/products`])
         }
       },
       error: (err: any) => this.errorMessage = err.error?.error || 'Login failed'

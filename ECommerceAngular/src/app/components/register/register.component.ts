@@ -13,7 +13,7 @@ import { Catalog } from "../catalog.component";
   styleUrls: ['./register.css']
 })
 export class RegisterComponent {
-  registerData = { fullName: '', email: '', password: '' };
+  registerData = { fullName: '', email: '', passwordHash: '',  role: 'Customer'};
   errorMessage = '';
 
   constructor(private userService: UserService) {}
