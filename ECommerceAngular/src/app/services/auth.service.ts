@@ -20,6 +20,11 @@ export class AuthService {
       }
   }
 
+  getRole(): string {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken.role;
+  }
+
   getToken(): string | null {
     if (this.isLocalStorageAvailable()) {
     return localStorage.getItem('jwt_token');

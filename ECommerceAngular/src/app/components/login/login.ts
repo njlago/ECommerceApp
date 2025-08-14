@@ -27,7 +27,13 @@ export class LoginComponent {
     this.authService.login({Email: this.Email, PasswordHash: this.PasswordHash}).subscribe({
       next: (res: any) => {
         this.authService.saveToken(res.token);
-        this.router.navigate(['/public/products']);
+        var role = this.authService.getRole();
+        if (role == "Admin") {
+          this.router.navigate(['/${role}/products']);
+        }
+        else {
+          this.router.navigate(['/public/products'])
+        }
       },
       error: (err: any) => this.errorMessage = err.error?.error || 'Login failed'
     });

@@ -15,9 +15,11 @@ import { CommonModule } from '@angular/common';
 export class App {
   constructor(public authService: AuthService, private router: Router) {}
   goLogin() {
+    // admin condition
     this.router.navigate(['/public/login'])
   }
   goRegister() {
+    // admin condition
     this.router.navigate(['/public/register'])
   }
   logout()
