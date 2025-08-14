@@ -11,6 +11,10 @@ public class ProductRepository : IProductRepository
         this.appDbContext = appDbContext;
         _logger = logger;
     }
+    public ProductRepository(AppDbContext appDbContext)
+    {
+        this.appDbContext = appDbContext;
+    }
 
     public List<Product> GetProducts()
     {
