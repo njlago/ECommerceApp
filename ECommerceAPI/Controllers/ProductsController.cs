@@ -67,16 +67,18 @@ public class ProductsController : Controller
         return BadRequest("Product could not be created.");
     }
 
-    [Authorize(Roles = "Admin")]
-    [HttpPut]
-    public IActionResult Update(Product product)
-    {
+    // [Authorize(Roles = "Admin")]
+    [HttpPut("admin/products/{id}")]
+    public IActionResult Update(int id)
+    {   
+        var prod = productRepository.GetProduct(id);
         if (ModelState.IsValid)
         {
-            bool updated = productRepository.Update(product);
+            bool updated = productRepository.Update(prod);
             if (updated)
             {
-                return Ok("Product was updated successfully.");
+
+                return Ok("product was updated");
             }
         }
         return BadRequest("Product could not be updated.");
