@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from '../../models/cart-item';
-import { CartService } from '../../services/cart.service';
-
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../models/cart-item';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './cart.html',
+  imports: [CommonModule, FormsModule, CurrencyPipe],
+  templateUrl: './cart.component.html',
   styleUrls: ['./cart.css']
 })
 export class CartComponent implements OnInit {
@@ -18,34 +17,22 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.loadCart();
+    this.cartService.getItems().subscribe(data => this.items = data);
   }
 
-  loadCart(): void {
-    this.cartService.getItems().subscribe({
-      next: (data) => this.items = data,
-      error: (err) => console.error('Failed to load cart', err)
-    });
-  }
-
-  updateQuantity(item: CartItem): void {
-    this.cartService.updateItem(item.productId, item.quantity).subscribe({
-      next: () => this.loadCart(),
-      error: (err) => console.error('Update failed', err)
-    });
+  updateItem(item: CartItem): void {
+    this.cartService.updateItem(item.productId, item.quantity).subscribe();
   }
 
   removeItem(productId: number): void {
-    this.cartService.removeItem(productId).subscribe({
-      next: () => this.loadCart(),
-      error: (err) => console.error('Remove failed', err)
+    this.cartService.removeItem(productId).subscribe(() => {
+      this.items = this.items.filter(i => i.productId !== productId);
     });
   }
 
   clearCart(): void {
-    this.cartService.clearCart().subscribe({
-      next: () => this.items = [],
-      error: (err) => console.error('Clear failed', err)
+    this.cartService.clearCart().subscribe(() => {
+      this.items = [];
     });
   }
 }
