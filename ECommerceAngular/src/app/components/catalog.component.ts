@@ -34,10 +34,28 @@ export class Catalog implements OnInit {
       price: product.price,
       quantity: 1
     };
-
-    this.cartService.addItem(item).subscribe({
-      next: () => alert(`${product.name} added to cart.`),
-      error: err => console.error('Error adding to cart:', err)
+    var count = 0;
+    for (const p of this.products) {
+      if (p.id === product.id) {
+        count++;
+      }
+    }
+    var cartCount = 0;
+    this.cartService.getItems().subscribe(cartItems => {
+      for (const cartItem of cartItems) {
+        if (cartItem.productId === product.id) {
+          cartCount++;
+        }
+      }
+      if (count > cartCount) {
+        console.log('Adding to cart:', item);
+        this.cartService.addItem(item).subscribe({
+          next: () => alert(`${product.name} added to cart.`),
+          error: err => console.error('Error adding to cart:', err)
+        });
+      } else { 
+        alert(`Cannot add more ${product.name} to cart. Stock limit reached.`);
+      }
     });
   }
 }

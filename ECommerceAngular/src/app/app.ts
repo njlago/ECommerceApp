@@ -36,7 +36,6 @@ export class App {
   }
 
   goCart() {
-    const role = this.authService.getRole();
     this.router.navigate(['/public/cart']);
   }
 
