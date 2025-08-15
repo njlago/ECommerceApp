@@ -37,14 +37,14 @@ export class Catalog implements OnInit {
     var count = 0;
     for (const p of this.products) {
       if (p.id === product.id) {
-        count++;
+        count = p.stock;
       }
     }
     var cartCount = 0;
     this.cartService.getItems().subscribe(cartItems => {
       for (const cartItem of cartItems) {
         if (cartItem.productId === product.id) {
-          cartCount++;
+          cartCount += cartItem.quantity;
         }
       }
       if (count > cartCount) {
