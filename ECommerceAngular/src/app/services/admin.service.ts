@@ -13,12 +13,17 @@ export class AdminService {
 
   // Product CRUD
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`);
+    return this.http.get<Product[]>(`api/products`);
   }
   addProduct(product: Product): Observable<Product> {
+
+
     return this.http.post<Product>(`${this.apiUrl}/products`, product);
   }
   updateProduct(product: Product): Observable<Product> {
+
+    console.log(this.http.put<Product>(`${this.apiUrl}/products/${product.id}`, product));
+
     return this.http.put<Product>(`${this.apiUrl}/products/${product.id}`, product);
   }
   deleteProduct(id: number): Observable<any> {

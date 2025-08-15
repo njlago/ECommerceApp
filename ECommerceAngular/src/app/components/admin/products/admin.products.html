@@ -1,19 +1,20 @@
 <h2>Admin Products Dashboard</h2>
-<ul>
-  <li *ngFor="let product of products">
-    {{ product.name }} - {{ product.price }} 
-    <button (click)="editProduct(product)">Edit</button>
-    
-  </li>
-</ul>
-
-<div *ngIf="editingProduct">
-  <h3>Edit Product</h3>
-  <input [(ngModel)]="editingProduct!.name" placeholder="Name" />
-  <input [(ngModel)]="editingProduct!.price" placeholder="Price" type="number" />
+ <ul>
+  <li *ngFor="let product of products"> {{ product.name }} - {{ product.price }} 
+    <button (click)="editProduct(product)">Edit</button> </li> 
+    <div>
+  @if (editingProduct) {
+<h3>Edit Product</h3>
+  <input [(ngModel)]="editingProduct.name" placeholder="Name" />
+  <input [(ngModel)]="editingProduct.price" placeholder="Price" type="number" />
+  
   <button (click)="updateProduct()">Update</button>
   <button (click)="editingProduct = null">Cancel</button>
+  }
+  
 </div>
+  </ul>
+
 
 <h3>Add Product</h3>
 <input [(ngModel)]="newProduct.name" placeholder="Name" />
@@ -27,3 +28,6 @@
 <input [(ngModel)]="delProduct.id" placeholder="ID" type="number" />
 <button (click)="deleteProduct()">Delete</button>
 <app-catalog></app-catalog>
+
+
+

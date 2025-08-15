@@ -35,4 +35,5 @@ a {
 a:hover{
     color: yellow;
     cursor: pointer;
+    letter-spacing: 1px;
 }

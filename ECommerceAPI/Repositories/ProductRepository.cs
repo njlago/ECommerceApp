@@ -1,6 +1,7 @@
 using ECommerceAPI.Data;
 using ECommerceAPI.Infrastructure;
 using ECommerceAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 public class ProductRepository : IProductRepository
 {
     private AppDbContext appDbContext;
@@ -56,7 +57,7 @@ public class ProductRepository : IProductRepository
         throw new NotFoundException("Product not found in database and could not be removed.");
 
     }
-    public bool Update(Product product)
+    public bool Update([FromBody] Product product)
     {
         var exists = appDbContext.Products.Find(product.Id);
         if (exists == null)

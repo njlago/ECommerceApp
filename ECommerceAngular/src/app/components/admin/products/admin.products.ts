@@ -7,6 +7,7 @@ import { Catalog } from '../../catalog.component';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -20,21 +21,26 @@ export class AdminProductsComponent implements OnInit {
   delProduct: Product = { id: 0, name: '', description: '', price: 0, stock: 0, categoryId: 1 };
   editingProduct: Product | null = null;
 
-  constructor(private adminService: AdminService, private router: Router, private authService: AuthService) {}
+  constructor(private productService: ProductService, private adminService: AdminService, private router: Router, private authService: AuthService) {}
 
-  ngOnInit() {
-    this.loadProducts();
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe(data => {
+
+      this.products = data;
+    });
   }
 
   loadProducts() {
-    this.adminService.getProducts().subscribe(data => this.products = data);
+    this.productService.getProducts().subscribe(data => this.products = data);
   }
 
   addProduct() {
     this.adminService.addProduct(this.newProduct).subscribe(() => this.loadProducts());
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
     this.router.navigate(['admin/products']);
+    
 });
+
 
 
   }
@@ -45,10 +51,13 @@ export class AdminProductsComponent implements OnInit {
 
   updateProduct() {
     if (this.editingProduct) {
-      this.adminService.updateProduct(this.editingProduct).subscribe(() => {
-        this.loadProducts();
-        this.editingProduct = null;
-      });
+      
+
+      this.adminService.updateProduct(this.editingProduct).subscribe(() => this.loadProducts());
+      this.editingProduct = null;
+    // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    // this.router.navigate(['admin/products']);
+      // });
     }
   }
 

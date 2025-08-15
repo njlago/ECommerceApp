@@ -69,16 +69,17 @@ public class ProductsController : Controller
 
     // [Authorize(Roles = "Admin")]
     [HttpPut("admin/products/{id}")]
-    public IActionResult Update(int id)
+    public IActionResult Update([FromBody] Product prod)
     {   
-        var prod = productRepository.GetProduct(id);
+        
         if (ModelState.IsValid)
         {
+
             bool updated = productRepository.Update(prod);
             if (updated)
             {
 
-                return Ok("product was updated");
+                return Ok(prod);
             }
         }
         return BadRequest("Product could not be updated.");
