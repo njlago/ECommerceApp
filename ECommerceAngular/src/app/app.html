@@ -6,19 +6,16 @@
     
 </nav>
 
-  <div *ngIf="authService.isAuthenticated(); else loggedOut">
+
+  @if (authService.isAuthenticated()) {
     <a (click)="logout()">Logout</a> | 
     <a (click)="goOrders()">Orders Dashboard</a> | 
     <a (click)="goProducts()">Products</a> | 
-
     <span>Welcome, {{ authService.getEmail() }}</span> | 
-
-  </div>
-  <ng-template #loggedOut>
-
+  } @else {
     <a (click)="goRegister()">Register | </a>
     <a (click)="goLogin()">Login</a>
-  </ng-template>
+  }
   
 
 

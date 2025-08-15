@@ -1,0 +1,35 @@
+<h2>Your Cart</h2>
+
+
+@if (items.length > 0) {
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.price | currency }}</td>
+        <td>
+          <input type="number" [(ngModel)]="item.quantity" (change)="updateItem(item)" min="1">
+        </td>
+        <td>{{ item.price * item.quantity | currency }}</td>
+        <td>
+          <button (click)="removeItem(item.productId)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+} @else {
+  <p>Your cart is currently empty.</p>
+}
+
+<div *ngIf="items.length > 0">
+  <button (click)="clearCart()">Clear Cart</button>
+</div>
