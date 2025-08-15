@@ -1,14 +1,6 @@
 <h2>Catalog</h2>
 <div class="catalog">
 
-@for (product of products; track product.id) {
-  <h1>{{ product.name }}</h1>
-  <p>Product ID: {{ product.id }}</p>
-  <p>Description: {{ product.description }}</p>
-  <p>Price: {{ product.price | currency }}</p>
-  <p>Remaining: {{ product.stock }}</p>
-  <p>Category ID: {{ product.categoryId }}</p>
-}
 @for (product of products; track product.id){
     <div class="product">
 <h2>{{product.name}} - <span>{{product.price | currency}}</span></h2>
