@@ -1,4 +1,3 @@
-<app-catalog></app-catalog>
 <h2>Admin Products Dashboard</h2>
 <ul>
   <li *ngFor="let product of products">
@@ -27,3 +26,4 @@
 <h3>Enter ID of item to delete</h3>
 <input [(ngModel)]="delProduct.id" placeholder="ID" type="number" />
 <button (click)="deleteProduct()">Delete</button>
+<app-catalog></app-catalog>

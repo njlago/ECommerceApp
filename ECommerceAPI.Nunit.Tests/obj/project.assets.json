@@ -4519,23 +4519,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jay.kim\\.nuget\\packages\\": {},
+    "C:\\Users\\nicholas.joseph\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jay.kim\\Documents\\capstone\\ECommerceApp\\ECommerceAPI.Nunit.Tests\\ECommerceAPI.Nunit.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\nicholas.joseph\\OneDrive - Incedo Technology Solutions Ltd\\Desktop\\Capstone\\ECommerceApp\\ECommerceAPI.Nunit.Tests\\ECommerceAPI.Nunit.Tests.csproj",
       "projectName": "ECommerceAPI.Nunit.Tests",
-      "projectPath": "C:\\Users\\jay.kim\\Documents\\capstone\\ECommerceApp\\ECommerceAPI.Nunit.Tests\\ECommerceAPI.Nunit.Tests.csproj",
-      "packagesPath": "C:\\Users\\jay.kim\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jay.kim\\Documents\\capstone\\ECommerceApp\\ECommerceAPI.Nunit.Tests\\obj\\",
+      "projectPath": "C:\\Users\\nicholas.joseph\\OneDrive - Incedo Technology Solutions Ltd\\Desktop\\Capstone\\ECommerceApp\\ECommerceAPI.Nunit.Tests\\ECommerceAPI.Nunit.Tests.csproj",
+      "packagesPath": "C:\\Users\\nicholas.joseph\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nicholas.joseph\\OneDrive - Incedo Technology Solutions Ltd\\Desktop\\Capstone\\ECommerceApp\\ECommerceAPI.Nunit.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jay.kim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nicholas.joseph\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4550,8 +4550,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\jay.kim\\Documents\\capstone\\ECommerceApp\\ECommerceAPI\\ECommerceAPI.csproj": {
-              "projectPath": "C:\\Users\\jay.kim\\Documents\\capstone\\ECommerceApp\\ECommerceAPI\\ECommerceAPI.csproj"
+            "C:\\Users\\nicholas.joseph\\OneDrive - Incedo Technology Solutions Ltd\\Desktop\\Capstone\\ECommerceApp\\ECommerceAPI\\ECommerceAPI.csproj": {
+              "projectPath": "C:\\Users\\nicholas.joseph\\OneDrive - Incedo Technology Solutions Ltd\\Desktop\\Capstone\\ECommerceApp\\ECommerceAPI\\ECommerceAPI.csproj"
             }
           }
         }
