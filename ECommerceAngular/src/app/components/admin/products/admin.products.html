@@ -1,19 +1,5 @@
 <h2>Admin Products Dashboard</h2>
- <ul>
-  <li *ngFor="let product of products"> {{ product.name }} - {{ product.price }} 
-    <button (click)="editProduct(product)">Edit</button> </li> 
-    <div>
-  @if (editingProduct) {
-<h3>Edit Product</h3>
-  <input [(ngModel)]="editingProduct.name" placeholder="Name" />
-  <input [(ngModel)]="editingProduct.price" placeholder="Price" type="number" />
-  
-  <button (click)="updateProduct()">Update</button>
-  <button (click)="editingProduct = null">Cancel</button>
-  }
-  
-</div>
-  </ul>
+
 
 
 <h3>Add Product</h3>
@@ -27,6 +13,28 @@
 <h3>Enter ID of item to delete</h3>
 <input [(ngModel)]="delProduct.id" placeholder="ID" type="number" />
 <button (click)="deleteProduct()">Delete</button>
+
+
+  <div class="editBox">
+<span class="editCard"*ngFor="let product of products"> {{ product.name }} - id: {{ product.id }} 
+  
+    <button (click)="editProduct(product)">Edit</button> </span> 
+ 
+
+  </div>
+<div>
+  @if (editingProduct) {
+<h3>Editing Product: {{editingProduct.id}} </h3>
+  <span>Name: </span><input [(ngModel)]="editingProduct.name" placeholder="Name" />
+  <span>Price: </span><input [(ngModel)]="editingProduct.price" placeholder="Price" type="number" />
+  
+  <button (click)="updateProduct()">Update</button>
+  <button (click)="editingProduct = null">Cancel</button>
+  }
+  
+</div>
+
+  
 <app-catalog></app-catalog>
 
 
