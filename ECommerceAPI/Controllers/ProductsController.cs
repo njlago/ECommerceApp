@@ -15,6 +15,11 @@ public class ProductsController : Controller
         _logger = logger;
     }
 
+    // public ProductsController(IProductRepository productRepository)
+    // {
+    //     this.productRepository = productRepository;
+    // }
+    // uncomment to test
     // [Authorize(Roles = "Admin, Customer")]
     [AllowAnonymous]
     [HttpGet("products")]

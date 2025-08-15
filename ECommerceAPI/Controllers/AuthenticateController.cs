@@ -18,6 +18,11 @@ public class AuthenticateController : Controller
         _logger = logger;
     }
 
+    // public AuthenticateController(IUserRepository userRepository)
+    // {
+    //     this.userRepository = userRepository;
+    // }
+    // Uncomment to test
     [HttpPost("login")]
     [AllowAnonymous]
 
