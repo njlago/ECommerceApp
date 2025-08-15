@@ -2,15 +2,11 @@
 
 <main class="main">
   <div class="content">
-    <nav>
-    
-</nav>
-
 
   @if (authService.isAuthenticated()) {
     <a (click)="logout()">Logout</a> | 
     <a (click)="goOrders()">Orders Dashboard</a> | 
-    <a (click)="goProducts()">Products</a> | 
+    <a (click)="goProducts()">Products</a>
         <span style="position: absolute;right: 40px;">Welcome, {{ authService.getEmail() }}  <span style="border: solid white 1px; border-radius: 100%;">👤</span></span>
 
   } @else {
