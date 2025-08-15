@@ -1,41 +1,33 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { CartItem } from '../models/cart-item';
+import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class CartService {
-  private itemsSubject = new BehaviorSubject<CartItem[]>([]);
-  private items: CartItem[] = [];
+  private apiUrl = '/api/cart';
+
+  constructor(private http: HttpClient) {}
 
   getItems(): Observable<CartItem[]> {
-    return this.itemsSubject.asObservable();
+    return this.http.get<CartItem[]>(this.apiUrl);
   }
 
-  addItem(item: CartItem): void {
-    const existing = this.items.find(i => i.productId === item.productId);
-    if (existing) {
-      existing.quantity += item.quantity;
-    } else {
-      this.items.push({ ...item });
-    }
-    this.itemsSubject.next([...this.items]);
+  addItem(item: CartItem): Observable<any> {
+    return this.http.post(this.apiUrl, item);
   }
 
-  updateItem(productId: number, quantity: number): void {
-    const item = this.items.find(i => i.productId === productId);
-    if (item) {
-      item.quantity = quantity;
-      this.itemsSubject.next([...this.items]);
-    }
+  updateItem(productId: number, quantity: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${productId}`, quantity);
   }
 
-  removeItem(productId: number): void {
-    this.items = this.items.filter(i => i.productId !== productId);
-    this.itemsSubject.next([...this.items]);
+  removeItem(productId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${productId}`);
   }
 
-  clearCart(): void {
-    this.items = [];
-    this.itemsSubject.next([]);
+  clearCart(): Observable<any> {
+    return this.http.delete(this.apiUrl);
   }
 }

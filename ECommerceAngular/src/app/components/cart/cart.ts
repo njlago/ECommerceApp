@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/cart.service';
-import { Observable } from 'rxjs';
+import { CartItem } from '../../models/cart-item';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -17,28 +16,31 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loadItems();
+  }
+
+  loadItems() {
     this.cartService.getItems().subscribe(data => {
       this.items = data;
     });
   }
 
   updateQuantity(item: CartItem) {
-    this.cartService.updateItem(item.productId, item.quantity);
-    this.cartService.getItems().subscribe(data => {
-      this.items = data;
+    this.cartService.updateItem(item.productId, item.quantity).subscribe(() => {
+      this.loadItems();
     });
   }
 
   removeItem(productId: number) {
-    this.cartService.removeItem(productId);
-    this.cartService.getItems().subscribe(data => {
-      this.items = data;
+    this.cartService.removeItem(productId).subscribe(() => {
+      this.loadItems();
     });
   }
 
   clearCart() {
-    this.cartService.clearCart();
-    this.items = [];
+    this.cartService.clearCart().subscribe(() => {
+      this.items = [];
+    });
   }
 }
