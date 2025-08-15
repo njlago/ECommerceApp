@@ -13,6 +13,10 @@ html {
     max-width: 300px;
     max-height: 270px;
     overflow-x: auto;
+    .cart {
+        position: relative;
+        border-radius: 3px;    
+    }
 }
 
 .catalog {
@@ -29,6 +33,7 @@ html {
     background-color: #EF4923;
     color: white
 }
+
 a {
     transition: 0.2s
 }

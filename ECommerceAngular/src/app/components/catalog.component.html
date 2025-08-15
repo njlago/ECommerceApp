@@ -3,6 +3,7 @@
 
 @for (product of products; track product.id){
     <div class="product">
+      <button class="cart" (click)="addToCart(product)">Add to Cart</button>
 <h2>{{product.name}} - <span>{{product.price | currency}}</span></h2>
     <p>productId: {{product.id}}</p>
     <p>Description: {{product.description}}</p>
