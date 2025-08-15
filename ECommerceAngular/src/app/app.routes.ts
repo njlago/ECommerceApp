@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'admin/login', component: LoginComponent },
   { path: 'admin/register', component: RegisterComponent },
   { path: 'admin/categories', component: CategoriesComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'cart', component: CartComponent }
+  { path: 'public/cart', component: CartComponent }
 
 ];
 

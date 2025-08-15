@@ -35,6 +35,11 @@ export class App {
     this.router.navigate([`/${role === 'Admin' ? 'admin' : 'public'}/products`]);
   }
 
+  goCart() {
+    const role = this.authService.getRole();
+    this.router.navigate(['/public/cart']);
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/public/login']);
