@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/cart.service';
-import { Observable } from 'rxjs';
+
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -17,28 +17,35 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit() {
-    this.cartService.getItems().subscribe(data => {
-      this.items = data;
+  ngOnInit(): void {
+    this.loadCart();
+  }
+
+  loadCart(): void {
+    this.cartService.getItems().subscribe({
+      next: (data) => this.items = data,
+      error: (err) => console.error('Failed to load cart', err)
     });
   }
 
-  updateQuantity(item: CartItem) {
-    this.cartService.updateItem(item.productId, item.quantity);
-    this.cartService.getItems().subscribe(data => {
-      this.items = data;
+  updateQuantity(item: CartItem): void {
+    this.cartService.updateItem(item.productId, item.quantity).subscribe({
+      next: () => this.loadCart(),
+      error: (err) => console.error('Update failed', err)
     });
   }
 
-  removeItem(productId: number) {
-    this.cartService.removeItem(productId);
-    this.cartService.getItems().subscribe(data => {
-      this.items = data;
+  removeItem(productId: number): void {
+    this.cartService.removeItem(productId).subscribe({
+      next: () => this.loadCart(),
+      error: (err) => console.error('Remove failed', err)
     });
   }
 
-  clearCart() {
-    this.cartService.clearCart();
-    this.items = [];
+  clearCart(): void {
+    this.cartService.clearCart().subscribe({
+      next: () => this.items = [],
+      error: (err) => console.error('Clear failed', err)
+    });
   }
 }
