@@ -1,7 +1,7 @@
 <h2>Your Cart</h2>
 
-
 @if (items.length > 0) {
+  
   <table border="1">
     <thead>
       <tr>
@@ -17,7 +17,7 @@
         <td>{{ item.name }}</td>
         <td>{{ item.price | currency }}</td>
         <td>
-          <input type="number" [(ngModel)]="item.quantity" (change)="updateItem(item)" min="1">
+          {{ item.quantity }}
         </td>
         <td>{{ item.price * item.quantity | currency }}</td>
         <td>

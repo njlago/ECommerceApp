@@ -51,9 +51,15 @@ export class AuthService {
   }
   getEmail(): string | null {
     const decodedToken = this.getDecodedToken();
-    console.log(decodedToken);
     return decodedToken ? decodedToken.email : null;
   }
+
+  getCustomerId(): number{
+    const decodedToken = this.getDecodedToken();
+    console.log(decodedToken);
+    return decodedToken ? decodedToken.unique_name : 0;
+  }
+
   private isLocalStorageAvailable(): boolean {
     try {
       const testKey = '__test__';

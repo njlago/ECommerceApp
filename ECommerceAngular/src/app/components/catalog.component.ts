@@ -4,12 +4,13 @@ import { ProductService } from "../services/product.service";
 import { CartService } from "../services/cart.service";
 import { Product } from "../models/product.class";
 import { CartItem } from "../models/cart-item";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
   templateUrl: './catalog.component.html',
-  providers: [ProductService],
+  providers: [ProductService, CartService, AuthService],
   imports: [CommonModule]
 })
 export class Catalog implements OnInit {
@@ -17,7 +18,8 @@ export class Catalog implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class Catalog implements OnInit {
   addToCart(product: Product): void {
     const item: CartItem = {
       productId: product.id,
+      customerId: this.authService.getCustomerId(),
       name: product.name,
       price: product.price,
       quantity: 1
@@ -57,5 +60,10 @@ export class Catalog implements OnInit {
         alert(`Cannot add more ${product.name} to cart. Stock limit reached.`);
       }
     });
+  }
+
+  checkout(): void {
+    alert('Proceeding to checkout...');
+    // Implement checkout logic here
   }
 }
